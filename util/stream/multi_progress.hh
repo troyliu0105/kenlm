@@ -3,6 +3,7 @@
 #define UTIL_STREAM_MULTI_PROGRESS_H
 
 #include <boost/thread/mutex.hpp>
+#include <boost/thread/thread.hpp>
 
 #include <cstddef>
 #include <stdint.h>

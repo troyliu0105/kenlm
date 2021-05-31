@@ -18,6 +18,7 @@ option(COMPILE_TESTS "Compile tests" OFF)
 option(ENABLE_PYTHON "Build Python bindings" OFF)
 # Eigen3 less than 3.1.0 has a race condition: http://eigen.tuxfamily.org/bz/show_bug.cgi?id=466
 find_package(Eigen3 3.1.0 CONFIG)
+add_subdirectory(third-party/boost-cmake)
 include(CMakeDependentOption)
 cmake_dependent_option(ENABLE_INTERPOLATE "Build interpolation program (depends on Eigen3)" ON "EIGEN3_FOUND AND NOT WIN32" OFF)
 
@@ -82,12 +83,13 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules)
 
 # We need boost
-find_package(Boost 1.41.0 REQUIRED COMPONENTS
-  program_options
-  system
-  thread
-  unit_test_framework
-)
+#find_package(Boost 1.41.0 REQUIRED COMPONENTS
+#  program_options
+#  system
+#  thread
+#  unit_test_framework
+#)
+set(Boost_LIBRARIES Boost::boost Boost::program_options Boost::system Boost::thread Boost::unit_test_framework)
 
 # Define where include files live
 include_directories(
