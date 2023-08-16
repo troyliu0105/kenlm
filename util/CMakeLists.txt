@@ -125,3 +125,6 @@ if(BUILD_TESTING)
                LIBRARIES kenlm_util Threads::Threads
                TEST_ARGS ${CMAKE_CURRENT_SOURCE_DIR}/file_piece.cc)
 endif()
+
+# 修复 kenlm 搭配 schwarz 使用时，boost::thread 出错的问题
+target_compile_definitions(kenlm_util PRIVATE -DBOOST_NO_CXX11_RVALUE_REFERENCES)

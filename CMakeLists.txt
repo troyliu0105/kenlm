@@ -18,7 +18,6 @@ option(COMPILE_TESTS "Compile tests" OFF)
 option(ENABLE_PYTHON "Build Python bindings" OFF)
 # Eigen3 less than 3.1.0 has a race condition: http://eigen.tuxfamily.org/bz/show_bug.cgi?id=466
 find_package(Eigen3 3.1.0 CONFIG)
-add_subdirectory(third-party/boost-cmake)
 include(CMakeDependentOption)
 cmake_dependent_option(ENABLE_INTERPOLATE "Build interpolation program (depends on Eigen3)" ON "EIGEN3_FOUND AND NOT WIN32" OFF)
 
@@ -114,11 +113,11 @@ if(ENABLE_PYTHON)
 endif()
 
 # Install targets
-install(EXPORT kenlmTargets
-  FILE kenlmTargets.cmake
-  NAMESPACE kenlm::
-  DESTINATION share/kenlm/cmake
-)
+# install(EXPORT kenlmTargets
+#   FILE kenlmTargets.cmake
+#   NAMESPACE kenlm::
+#   DESTINATION share/kenlm/cmake
+# )
 
 # Config
 include(CMakePackageConfigHelpers)

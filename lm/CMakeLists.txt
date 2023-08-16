@@ -76,3 +76,6 @@ if(BUILD_TESTING)
                TEST_ARGS ${CMAKE_CURRENT_SOURCE_DIR}/test.arpa
                          ${CMAKE_CURRENT_SOURCE_DIR}/test_nounk.arpa)
 endif()
+
+# 修复 kenlm 搭配 schwarz 使用时，boost::thread 出错的问题
+target_compile_definitions(kenlm PRIVATE -DBOOST_NO_CXX11_RVALUE_REFERENCES)
